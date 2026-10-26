@@ -7,9 +7,10 @@ import { ComicsComponent } from './components/comics-component/comics-component'
 import { provideHttpClient } from '@angular/common/http';
 import { ServicePersona } from './services/service.persona';
 import { PersonaApiComponent } from './components/persona-api-component/persona-api-component';
+import { MenuComponent } from './components/menu-component/menu-component';
 
 @NgModule({
-  declarations: [App, ComicsComponent, PersonaApiComponent],
+  declarations: [App, ComicsComponent, PersonaApiComponent, MenuComponent],
   imports: [BrowserModule, AppRoutingModule],
   providers: [
     provideHttpClient(),
