@@ -16,12 +16,22 @@ export class PersonaApiComponent implements OnInit {
     private _service: ServicePersona
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    //   this.personas = await this._service.getPersonasAsync();
+    //   this._cdr.detectChanges();
+    // } catch(error: any) {
+    //   console.error("Error en el Api", error);
+
+
     //Si devolvemos un Observable con la peticion, nos subcribimos a su promesa
-    this._service.getPersona().subscribe((response) => {
-      console.log("Leyendo personas")
-      this.personas = response;
-      this._cdr.detectChanges();
+    //OBSERVABLE (abajo)
+    this._service.getPersonas().subscribe({
+      next: (response) => {
+        this.personas = response;
+        this._cdr.detectChanges();
+      }, error: (error) => {
+        console.error("Error en el Api", error);
+      }
     })
   }
 }
