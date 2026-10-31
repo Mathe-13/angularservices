@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { firstValueFrom, Observable } from "rxjs";
 import { environment } from "../../environments/environment.development";
@@ -15,10 +15,15 @@ export class ServicePlantilla {
         return this._http.get(url + request);
     }
 
-    async getPlantillaByFuncionAsync(funcion: string): Promise<Plantilla[]> {
+    async getPlantillaFuncionAsync(funciones: Array<string>): Promise<Plantilla[]> {
         let url = environment.urlApiPlantilla;
-        let request = "api/plantilla/plantillafuncion/" + funcion;
-        return firstValueFrom(this._http.get<Plantilla[]>(url + request));
+        let request = "api/plantilla/plantillafunciones";
+      let params = new HttpParams();
+      for (let fun of funciones){
+        params = params.append("funcion", fun);
+      }
+        return firstValueFrom(this._http.get<Plantilla[]>(url + request, {params: params})
+                             );
     }
 
     async getPlantillaFunciones(funciones: Array<string>): Promise<Plantilla[]> {
