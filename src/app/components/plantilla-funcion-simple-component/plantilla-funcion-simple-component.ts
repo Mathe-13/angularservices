@@ -27,7 +27,7 @@ export class PlantillaFuncionSimpleComponent implements OnInit {
 
   async mostrarPlantilla(): Promise<void> {
     let funcion = this.selectFuncion.nativeElement.value;
-    this.personas = await this._service.getPlantillaByFuncionAsync(funcion);
+    this.personas = await this._service.getPlantillaFuncionAsync([funcion]);
     this._cdr.detectChanges();
   }
 }
